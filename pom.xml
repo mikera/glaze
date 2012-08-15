@@ -8,8 +8,6 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<lwjgl.version>2.8.4</lwjgl.version>
-		<natives>target/natives</natives>
 	</properties>
 
 	<build>
@@ -38,7 +36,7 @@
 				</executions>
 
 				<configuration>
-					<nativesTargetDir>${natives}</nativesTargetDir>
+					<nativesTargetDir>target/natives</nativesTargetDir>
 					<separateDirs>false</separateDirs>
 				</configuration>
 			</plugin>
@@ -84,11 +82,9 @@
 			</testResource>
 		</testResources>
 
-
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
@@ -98,32 +94,17 @@
 							<pluginExecutions>
 								<pluginExecution>
 									<pluginExecutionFilter>
-										<groupId>com.googlecode.mavennatives</groupId>
-										<artifactId>maven-nativedependencies-plugin</artifactId>
+										<groupId>
+											com.googlecode.mavennatives
+										</groupId>
+										<artifactId>
+											maven-nativedependencies-plugin
+										</artifactId>
 										<versionRange>
 											[0.0.6,)
 										</versionRange>
 										<goals>
 											<goal>copy</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.apache.maven.plugins
-										</groupId>
-										<artifactId>
-											maven-dependency-plugin
-										</artifactId>
-										<versionRange>
-											[2.1,)
-										</versionRange>
-										<goals>
-											<goal>unpack</goal>
 										</goals>
 									</pluginExecutionFilter>
 									<action>
@@ -156,7 +137,14 @@
   	<dependency>
   		<groupId>org.lwjgl.lwjgl</groupId>
   		<artifactId>lwjgl</artifactId>
-  		<version>${lwjgl.version}</version>
+  		<version>2.8.4</version>
   	</dependency>
-  </dependencies>
+  	<dependency>
+  		<groupId>org.lwjgl.lwjgl</groupId>
+  		<artifactId>lwjgl-platform</artifactId>
+  		<version>2.8.4</version>
+  		<classifier>natives-windows</classifier>
+  		<scope>runtime</scope>
+  	</dependency>
+	</dependencies>
 </project>
