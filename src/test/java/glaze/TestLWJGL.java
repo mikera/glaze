@@ -1,6 +1,11 @@
 package glaze;
 
 import static org.junit.Assert.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
+
 import org.junit.Test;
 
 
@@ -10,6 +15,34 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 public class TestLWJGL {
+	
+	static {
+		File temp=null;
+		try {
+			temp = File.createTempFile("natives","");
+			temp.delete();
+			temp.mkdir();
+			temp.deleteOnExit();
+			
+			
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		System.setProperty( "java.library.path", temp.getAbsolutePath() );
+		 
+		Field fieldSysPath;
+		try {
+			fieldSysPath = ClassLoader.class.getDeclaredField( "sys_paths" );
+			fieldSysPath.setAccessible( true );
+			fieldSysPath.set( null, null );
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 	
 	@Test public void testLWJGL() {
 		try {
