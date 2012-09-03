@@ -32,9 +32,10 @@
 						</goals>
 					</execution>
 				</executions>
-				<!-- <configuration> <nativesTargetDir>target/natives</nativesTargetDir> 
-					<separateDirs>false</separateDirs> </configuration> -->
-
+				<configuration> 
+					<nativesTargetDir>${basedir}/target/natives</nativesTargetDir> 
+					<separateDirs>false</separateDirs>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
