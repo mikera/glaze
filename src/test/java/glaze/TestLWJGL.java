@@ -16,7 +16,7 @@ import org.lwjgl.opengl.DisplayMode;
 
 public class TestLWJGL {
 	
-	static {
+	public void resetLibaryPath() {
 		File temp=null;
 		try {
 			temp = File.createTempFile("natives","");
@@ -44,7 +44,14 @@ public class TestLWJGL {
 
 	}
 	
+	static {
+		// resetLibaryPath();
+	}
+	
 	@Test public void testLWJGL() {
+		
+		System.out.println("LIBRARY PATH: "+System.getProperty("java.library.path"));
+		
 		try {
 			Display.setDisplayMode(new DisplayMode(800,600));
 			Display.create();

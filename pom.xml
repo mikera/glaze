@@ -6,12 +6,19 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<description>A Clojure wrapper library for LWJGL</description>
 	<packaging>jar</packaging>
-	
+
+	<properties>
+		<finalName>${project.artifactId}-${project.version}.jar</finalName>
+		<main.class>glaze.TestApp</main.class>
+		<natives>${project.build.directory}/natives</natives>
+		<release.natives>natives/</release.natives>
+	</properties>
+
 	<scm>
 		<connection>scm:git:git@github.com:mikera/${project.artifactId}.git</connection>
 		<url>scm:git:git@github.com:mikera/${project.artifactId}.git</url>
 		<developerConnection>scm:git:git@github.com:mikera/${project.artifactId}.git</developerConnection>
-  	</scm>
+	</scm>
 
 	<build>
 		<plugins>
@@ -38,8 +45,9 @@
 						</goals>
 					</execution>
 				</executions>
-				<configuration> 
-					<nativesTargetDir>${basedir}/target/natives</nativesTargetDir> 
+
+				<configuration>
+					<nativesTargetDir>${natives}</nativesTargetDir>
 					<separateDirs>false</separateDirs>
 				</configuration>
 			</plugin>
@@ -48,7 +56,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<forkMode>once</forkMode>
-					<argLine>-Djava.library.path=${project.build.directory}/natives</argLine>
+					<argLine>-Djava.library.path=${project.basedir}/target/natives</argLine>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -73,6 +81,21 @@
 					<testSourceDirectories>
 						<testSourceDirectory>src/test/clojure</testSourceDirectory>
 					</testSourceDirectories>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>${main.class}</mainClass>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+						</manifest>
+					</archive>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -117,25 +140,6 @@
 					<configuration>
 						<lifecycleMappingMetadata>
 							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											com.googlecode.mavennatives
-										</groupId>
-										<artifactId>
-											maven-nativedependencies-plugin
-										</artifactId>
-										<versionRange>
-											[0.0.6,)
-										</versionRange>
-										<goals>
-											<goal>copy</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
