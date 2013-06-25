@@ -1,7 +1,5 @@
 package glaze;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -10,7 +8,6 @@ import org.junit.Test;
 
 
 import org.lwjgl.LWJGLException;
-import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 

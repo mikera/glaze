@@ -115,6 +115,7 @@ public class Natives {
 		return null;
 	}
 
+	@SuppressWarnings({ "null", "unused" })
 	public static void extractNativeLibs(Platform platform, String settings)
 			throws IOException {
 		String renderer = "LWJGL";
@@ -340,7 +341,8 @@ public class Natives {
 				extractNativeLib("macosx", "jinput-osx");
 
 			break;
-
+		default:
+			throw new RuntimeException("Platform not recognised!!");
 		}
 	}
 
