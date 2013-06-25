@@ -68,13 +68,13 @@ public class Natives {
 			throws IOException {
 		String fullname = System.mapLibraryName(name);
 
-		String path = "native/" + sysName + "/" + fullname;
+		String path = fullname;
 		InputStream in = Thread.currentThread().getContextClassLoader()
 				.getResourceAsStream(path);
 		// InputStream in = Natives.class.getResourceAsStream();
 		if (in == null) {
-			logger.log(Level.WARNING, "Cannot locate native library: {0}/{1}",
-					new String[] { sysName, fullname });
+			logger.log(Level.WARNING, "Cannot locate native library: {0} : {1} at {2}",
+					new String[] { sysName, fullname ,path});
 			return;
 		}
 		File targetFile = new File(workingDir, fullname);
